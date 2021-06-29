@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+Page N°2 pour la création des emprunts et la modification de leur statut
+-->
+<html>
+<head>
+<title>Page d'emprunt</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+<script src="emprunt.js" defer></script>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<h1>Gestion des emprunts</h1>
+	<section>
+		<fieldset id="formulaireEmprunt">
+			<legend>Création d'un emprunt</legend>
+			<label for="livres">Livres<label />
+				<p>
+					<select name="livres" id="listeLivres">
+						<option value="">--Veuillez sélectionner un livre--</option>
+						<option value="livre1">Livre 1</option>
+						<option value="livre2">Livre 2</option>
+						<option value="livre3">Livre 3</option>
+					</select>
+				</p> <label for="nomEmprunteur">Nom de l'emprunteur</label>
+				<p>
+					<input type="text" id="nomEmprunteur" required>
+				</p> <label for="date">Date d'emprunt</label>
+				<p>
+					<input type="date" id="date" required>
+				</p>
+
+				<button id="envoyer">Créer l'emprunt</button>
+		</fieldset>
+	</section>
+	<a href='/'><button>Lien vers la page de création de
+			livres</button></a>
+</body>
+</html>
