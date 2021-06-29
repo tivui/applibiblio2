@@ -49,7 +49,7 @@ public class Emprunt implements Serializable {
     }
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.DATE)
     public Date getDate() {
         return date;
     }
