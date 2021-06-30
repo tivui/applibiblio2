@@ -135,6 +135,27 @@ public class BiblioController {
         return "Statut de l'emprunt n° "+idEmprunt+" mis à jour";
     }
     
-    
+     //Contrôleur qui affiche la liste de tous les emprunts dans la base
+    @RequestMapping("/coucou/{titre}")
+    public String coucou(@PathVariable String titre) {
+        logger.info("coucou OK :"+titre);
+        return "coucou";
+    }
 
+    
+    @RequestMapping("/creation/livre/{titre}/{nomAuteur}/{prenomAuteur}/{annee}/{editeur}")
+    public String creationLivre(@PathVariable String titre, @PathVariable String nomAuteur,
+            @PathVariable String prenomAuteur, @PathVariable String annee, @PathVariable String editeur) throws ParseException {
+        Session session = sessionFactory.openSession();
+        //Création d'un nouvel livre
+        Livre nouveauLivre = new Livre (titre, nomAuteur, prenomAuteur, annee, editeur);
+        logger.info("Livre créé: " + ", Titre : " + titre +", Auteur : " + nomAuteur + " " + prenomAuteur + " date de " + annee + " edité par " + editeur);
+        //Ajout du livre dans la base
+        session.save(nouveauLivre);
+        session.close();
+        logger.info("Nouveau livre ajouté à la base");
+        return "ok";
+    }
+    
+    
 }
