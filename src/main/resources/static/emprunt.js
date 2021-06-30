@@ -34,7 +34,7 @@ $(function () {
         $("#message3").html("Nom de l'emprunteur tapé: " + nomEmprunteur);
     });
 });
-//TEST fonction Jquery qui se lance à la modification de l'input Emprunteur
+//TEST fonction Jquery qui se lance à la modification de la date
 $(function () {
     $("#date").on('change', function () {
         //Affichage de la date sélectionnée
