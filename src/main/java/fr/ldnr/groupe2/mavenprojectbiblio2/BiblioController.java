@@ -95,11 +95,13 @@ public class BiblioController {
         }
     }
 
+    
+    //Contrôleur qui crée un emprunt à partir de l'id d'un livre
     @RequestMapping("/creation/emprunt/{idLivre}/{nomEmprunteur}/{date}")
     public String creationEmprunt(@PathVariable String idLivre, @PathVariable String nomEmprunteur, @PathVariable String date) throws ParseException {
         //Récupération de l'objet livre dans la table Livre grâce à son id (qu'il faut caster en int)
         Session session = sessionFactory.openSession();
-        int idLivreInt = Integer.parseInt(idLivre);
+        int idLivreInt = Integer.parseInt(idLivre);//cast de l'id de String à Int
         Livre livreEmprunt = session.load(Livre.class, idLivreInt);
         //Cast de la date String récupéré en objet date
         Date dateEmprunt = new SimpleDateFormat("yyyy-MM-dd").parse(date);
@@ -112,5 +114,27 @@ public class BiblioController {
         logger.info("Nouvel Emprunt ajouté à la base");
         return idLivre;
     }
+    
+    
+    //Contrôleur qui met à jour le statut d'un emprunt à partir de son id
+    @RequestMapping("/miseajour/emprunt/{idEmprunt}")
+    public String miseAjour(@PathVariable String idEmprunt) throws ParseException {
+        Emprunt emprunt;
+        try ( //Récupération de l'emprunt
+                Session session = sessionFactory.openSession()) {
+            int idLivreInt = Integer.parseInt(idEmprunt);//cast de l'id de String à Int
+            emprunt = session.load(Emprunt.class, idLivreInt);
+            //Mise à jour de l'emprunt
+            emprunt.setEstEmprunte(false);
+            //Ajout de l'emprunt mis à jour dans la base
+            session.save(emprunt);
+            session.close();
+        } //cast de l'id de String à Int
+        logger.info("Emprunt n° :" + idEmprunt + " mis à jour avec succès!");
+        logger.info("Valeur du booléen estEmprunte :" + emprunt.isEstEmprunte());
+        return "Statut de l'emprunt n° "+idEmprunt+" mis à jour";
+    }
+    
+    
 
 }
