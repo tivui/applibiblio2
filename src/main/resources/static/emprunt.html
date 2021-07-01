@@ -17,10 +17,11 @@ Page N°2 pour la création des emprunts et la modification de leur statut
 	<h1>Gestion des emprunts</h1>
 	<section>
 		<fieldset id="formulaireEmprunt">
+                    <form id="formulaire">
 			<legend>Création d'un emprunt</legend>
 			<label for="livres">Livres<label />
 				<p>
-					<select id="listeLivres">
+					<select id="listeLivres" required>
 						<option id="titreListeLivres" value="">--Veuillez sélectionner un livre--</option>
 					</select>
 				</p> <label for="nomEmprunteur">Nom de l'emprunteur</label>
@@ -31,8 +32,8 @@ Page N°2 pour la création des emprunts et la modification de leur statut
 					<input type="date" id="date" required>
 				</p>
 
-				<button id="envoyer">Créer l'emprunt</button>
-                                                 
+				<button id="envoyer" type="submit">Créer l'emprunt</button>
+                    </form>                           
                           
 		</fieldset>
             
