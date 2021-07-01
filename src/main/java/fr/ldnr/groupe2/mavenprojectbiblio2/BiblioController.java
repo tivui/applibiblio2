@@ -118,14 +118,16 @@ public class BiblioController {
     public String miseAjour(@PathVariable String idEmprunt) throws ParseException {
         Emprunt emprunt;
         try ( //Récupération de l'emprunt
-                Session session = sessionFactory.openSession()) {
+            Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
             int idLivreInt = Integer.parseInt(idEmprunt);//cast de l'id de String à Int
             emprunt = session.load(Emprunt.class, idLivreInt);
             //Mise à jour de l'emprunt
             emprunt.setEstEmprunte(false);
             //Ajout de l'emprunt mis à jour dans la base
             session.save(emprunt);
-            session.close();
+            tx.commit();
+            //session.close();
         } //cast de l'id de String à Int
         logger.info("Emprunt n° :" + idEmprunt + " mis à jour avec succès!");
         logger.info("Valeur du booléen estEmprunte :" + emprunt.isEstEmprunte());
