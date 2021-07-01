@@ -33,7 +33,7 @@ public class BiblioController {
 
     @RequestMapping("/creation")
     @ResponseBody
-    public void creation() {
+    public String creation() {
         //crée des livres et des emprunts de base pour les tests
         Session session = sessionFactory.openSession();
         Livre l1 = new Livre("2015", "A la lumière des étoiles", "Hardy", "Thomas", "CraneFord Editions");
@@ -52,6 +52,7 @@ public class BiblioController {
         session.save(e2);
         session.save(e3);
         session.close();
+        return "4 livres et 3 emprunts test créés.";
     }
 
     //Contrôleur qui affiche la liste de tous les livres de la bdd 
@@ -123,14 +124,14 @@ public class BiblioController {
             int idLivreInt = Integer.parseInt(idEmprunt);//cast de l'id de String à Int
             emprunt = session.load(Emprunt.class, idLivreInt);
             //Mise à jour de l'emprunt
-            emprunt.setEstEmprunte(false);
+            emprunt.getLivre().setEstEmprunte(false);
             //Ajout de l'emprunt mis à jour dans la base
             session.save(emprunt);
             tx.commit();
             //session.close();
         } //cast de l'id de String à Int
         logger.info("Emprunt n° :" + idEmprunt + " mis à jour avec succès!");
-        logger.info("Valeur du booléen estEmprunte :" + emprunt.isEstEmprunte());
+        logger.info("Valeur du booléen livre estEmprunte :" + emprunt.getLivre().isEstEmprunte());
         return "Statut de l'emprunt n° " + idEmprunt + " mis à jour";
     }
 
@@ -146,7 +147,7 @@ public class BiblioController {
             @PathVariable String prenomAuteur, @PathVariable String annee, @PathVariable String editeur) throws ParseException {
         Session session = sessionFactory.openSession();
         //Création d'un nouvel livre
-        Livre nouveauLivre = new Livre(annee, titre, nomAuteur, prenomAuteur, editeur);
+        Livre nouveauLivre = new Livre(titre, nomAuteur, prenomAuteur, annee, editeur);
         logger.info("Livre créé: " + ", Titre : " + titre + ", Auteur : " + nomAuteur + " " + prenomAuteur + " date de " + annee + " edité par " + editeur);
         //Ajout du livre dans la base
         session.save(nouveauLivre);
