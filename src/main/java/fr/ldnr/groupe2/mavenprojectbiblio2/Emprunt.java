@@ -2,6 +2,7 @@ package fr.ldnr.groupe2.mavenprojectbiblio2;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -66,7 +67,7 @@ public class Emprunt implements Serializable {
         this.nomEmprunteur = nomEmprunteur;
     }
 
-    @ManyToOne 
+    @ManyToOne (cascade = CascadeType.ALL)
     public Livre getLivre() {
         return livre;
     }

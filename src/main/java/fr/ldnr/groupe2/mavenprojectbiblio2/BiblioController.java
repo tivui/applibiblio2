@@ -36,10 +36,10 @@ public class BiblioController {
     public String creation() {
         //crée des livres et des emprunts de base pour les tests
         Session session = sessionFactory.openSession();
-        Livre l1 = new Livre("2015", "A la lumière des étoiles", "Hardy", "Thomas", "CraneFord Editions");
-        Livre l2 = new Livre("1932", "Villette", "Brontë", "Charlotte", "CraneFord Editions");
-        Livre l3 = new Livre("2000", "Lady Suzans: les Watson sans dit-on ", "Austen", "Jane", "CraneFord Editions");
-        Livre l4 = new Livre("1993", "L'éveil", "Chopin", "Kate", "CraneFord Editions");
+        Livre l1 = new Livre("A la lumière des étoiles", "Hardy", "Thomas","2015",  "CraneFord Editions");
+        Livre l2 = new Livre("Villette", "Brontë", "Charlotte", "1932", "CraneFord Editions");
+        Livre l3 = new Livre("Lady Suzans: les Watson sans dit-on ", "Austen", "Jane", "2000", "CraneFord Editions");
+        Livre l4 = new Livre("L'éveil", "Chopin", "Kate", "1993", "CraneFord Editions");
         Emprunt e1 = new Emprunt(new GregorianCalendar(2021, 6, 29).getTime(), "Justin Bodinier", l4);
         Emprunt e2 = new Emprunt(new GregorianCalendar(2021, 6, 28).getTime(), "Chantal Keda", l3);
         Emprunt e3 = new Emprunt(new GregorianCalendar(2021, 6, 27).getTime(), "Thierry Vuillermet", l1);
@@ -66,10 +66,11 @@ public class BiblioController {
     }
 
     //Contrôleur qui affiche la liste de tous les livres de la bdd triés par titre
+    //Disponibles
     @RequestMapping("/bdd/livrespartitre")
     public List<Livre> livresParTitre() {
         Session session = sessionFactory.openSession();
-        String livresParTitreHQL = "FROM Livre ORDER BY titre";
+        String livresParTitreHQL = "FROM Livre  WHERE estEmprunte=false ORDER BY titre ";
         List<Livre> list = session.createQuery(livresParTitreHQL).list();
         session.close();
         return list;
@@ -100,6 +101,7 @@ public class BiblioController {
     public String creationEmprunt(@PathVariable String idLivre, @PathVariable String nomEmprunteur, @PathVariable String date) throws ParseException {
         //Récupération de l'objet livre dans la table Livre grâce à son id (qu'il faut caster en int)
         Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
         int idLivreInt = Integer.parseInt(idLivre);//cast de l'id de String à Int
         Livre livreEmprunt = session.load(Livre.class, idLivreInt);
         //Cast de la date String récupéré en objet date
@@ -107,10 +109,12 @@ public class BiblioController {
         //Création d'un nouvel emprunt
         Emprunt nouvelEmprunt = new Emprunt(dateEmprunt, nomEmprunteur, livreEmprunt);
         logger.info("Emprunt créé: id du livre n°" + idLivre + ", Emprunteur : " + nomEmprunteur + " à la date du " + date);
+        //Modification du statut du livre : estEmprunte passe de false à true
+        nouvelEmprunt.getLivre().setEstEmprunte(true);
         //Ajout de l'emprunt dans la base
         session.save(nouvelEmprunt);
-        session.close();
-        logger.info("Nouvel Emprunt ajouté à la base");
+        tx.commit();
+        logger.info("Nouvel Emprunt ajouté à la base, statut du livre associé :" + nouvelEmprunt.getLivre().isEstEmprunte());
         return idLivre;
     }
 
@@ -161,7 +165,7 @@ public class BiblioController {
     @RequestMapping("/bdd/listEmprunts")
     public List<Emprunt> listEmprunts() {
         Session session = sessionFactory.openSession();
-        String ListeDesEmprunts = "From Emprunt ORDER BY date";
+        String ListeDesEmprunts = "From Emprunt WHERE livre.estEmprunte=true ORDER BY date";
         List<Emprunt> listEmprunt = session.createQuery(ListeDesEmprunts).getResultList();
         session.close();
         return listEmprunt;

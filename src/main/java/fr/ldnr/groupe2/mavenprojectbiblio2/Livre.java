@@ -20,11 +20,11 @@ public class Livre implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private int idLivre;
-    private String annee;
     private String titre;
     private String nomAuteur ;
     private String prenomAuteur;
     private String editeur;
+    private String annee;
     private boolean estEmprunte;
 
     public Livre() {
