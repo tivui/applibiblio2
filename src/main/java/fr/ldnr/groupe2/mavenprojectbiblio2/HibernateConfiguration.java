@@ -23,9 +23,9 @@ public class HibernateConfiguration {
         options.put("hibernate.connection.driver_class", "org.sqlite.JDBC");
         options.put("hibernate.connection.url", "jdbc:sqlite:biblio.sqlite");
         SessionFactory factory = new org.hibernate.cfg.Configuration().
-                addProperties(options).addAnnotatedClass(Livre.class).
-                addProperties(options).addAnnotatedClass(Emprunt.class).
-                buildSessionFactory();
+                addProperties(options).addAnnotatedClass(Livre.class)
+                .addAnnotatedClass(Emprunt.class)
+                .buildSessionFactory();
 
         logger.info("SessionFactory créée");
         return factory;
