@@ -51,15 +51,6 @@ public class Livre implements Serializable {
     }
 
     @Column(nullable = false)
-    public String getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(String annee) {
-        this.annee = annee;
-    }
-
-    @Column(nullable = false)
     public String getTitre() {
         return titre;
     }
@@ -84,6 +75,15 @@ public class Livre implements Serializable {
 
     public void setPrenomAuteur(String prenomAuteur) {
         this.prenomAuteur = prenomAuteur;
+    }
+    
+        @Column(nullable = false)
+    public String getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(String annee) {
+        this.annee = annee;
     }
 
     @Column(nullable = false)
