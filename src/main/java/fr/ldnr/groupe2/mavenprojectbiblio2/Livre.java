@@ -25,16 +25,18 @@ public class Livre implements Serializable {
     private String nomAuteur ;
     private String prenomAuteur;
     private String editeur;
+    private boolean estEmprunte;
 
     public Livre() {
     }
 
-    public Livre(String annee, String titre, String nomAuteur, String prenomAuteur, String editeur) {
-        this.annee = annee;
+    public Livre(String titre, String nomAuteur, String prenomAuteur, String annee, String editeur) {
         this.titre = titre;
         this.nomAuteur = nomAuteur;
         this.prenomAuteur = prenomAuteur;
+        this.annee = annee;
         this.editeur = editeur;
+        this.estEmprunte = false;
     }
 
     
@@ -92,6 +94,16 @@ public class Livre implements Serializable {
     public void setEditeur(String editeur) {
         this.editeur = editeur;
     }
+
+    public boolean isEstEmprunte() {
+        return estEmprunte;
+    }
+
+    public void setEstEmprunte(boolean estEmprunte) {
+        this.estEmprunte = estEmprunte;
+    }
+    
+    
     
     
 }
