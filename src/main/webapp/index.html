@@ -14,14 +14,16 @@
         <section>
             <fieldset id="formulaireLivres">
                 <legend>Nouveau livres</legend>
-                
-                    <p>Titre de l'oeuvre<input type="text" id="titre" /></p>
-                    <p>Nom de l'auteur<input type="text" id="nomAuteur" /></p>
-                    <p>Prénom de l'auteur<input type="text" id="prenomAuteur" /></p>
-                    <p>Année de sortie<input type="text" id="annee" /></p>
-                    <p>Editeur<input type="text" id="editeur" /></p>
-                    <p><button id="envoyer">Enregistrer</button></p>
-                    <p><button id="effacer">Effacer</button></p>
+                    <div>
+                        <p><label>Titre de l'oeuvre</label><input type="text" id="titre" required="required" onFocus="javascript:this.value=''" /></p>
+                        <p><label>Nom de l'auteur</label><input type="text" id="nomAuteur" required="required" onFocus="javascript:this.value=''" /></p>
+                        <p><label>Prénom de l'auteur</label><input type="text" id="prenomAuteur" required="required" onFocus="javascript:this.value=''"/></p>
+                        <p><label>Année de sortie</label><input type="text" id="annee" required="required" onFocus="javascript:this.value=''" /></p>
+                        <p><label>Editeur</label><input type="text" id="editeur" required="required" onFocus="javascript:this.value=''" /></p>
+                    </div>
+                    <div>    
+                        <p><button id="envoyer">Enregistrer</button></p>
+                    </div>
             </fieldset>
         </section>    
 	<a href='/emprunt'><button>Lien vers la page d'emprunt</button></a>
