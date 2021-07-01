@@ -1,11 +1,4 @@
-// document ready
-jQuery(document).ready(function($){
-    alert('Message lancé grâce à la méthode .ready de Jquery');
-});
-
-
 //****************************************TESTS*********************************************
-
 //TEST fonction Jquery qui se lance à la modification de l'input Livres
 $(function () {
     $("#titre").on('input', function () {
@@ -29,7 +22,7 @@ $(function () {
     $("#prenomAuteur").on('input', function () {
         //Affichage du prenom de l'Auteur rentré 
         let prenomAuteur = $("#prenomAuteur").val();
-        $("#message14").html("Prénom de l'auteur tapé: " + prenomAuteur);
+        $("#message14").html("Prenom de l'auteur tapé: " + prenomAuteur);
     });
 });
 
@@ -38,10 +31,18 @@ $(function () {
     $("#annee").on('change', function () {
         //Affichage de l'annee sélectionnée
         let annee = $("#annee").val();
-        $("#message15").html("Année rentrée: " + annee);
+        $("#message15").html("annee rentrée: " + annee);
     });
 });
 
+//TEST fonction Jquery qui se lance à la modification de l'input Livres
+$(function () {
+    $("#editeur").on('change', function () {
+        //Affichage de l'editeur sélectionnée
+        let editeur = $("#editeur").val();
+        $("#message16").html("editeur selectionné: " + editeur);
+    });
+});
 
 //fonction Jquery qui se lance au clic du bouton envoyer
 $(function () {
@@ -58,7 +59,7 @@ $(function () {
             url: "/creation/livre/" + titre + "/" + nomAuteur + "/" + prenomAuteur + "/" + annee + "/" + editeur,
             type: "GET",
             dataType: "json"
-        }).done(function (id) { // 200
+        }).done(function () { // 200
             $("#message10").html("Opération de création effectuée!");
         }).fail(function () { // 400, 501..
             $("#message11").html("Echec !");
