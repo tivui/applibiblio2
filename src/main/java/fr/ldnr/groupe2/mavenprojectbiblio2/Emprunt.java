@@ -26,7 +26,6 @@ public class Emprunt implements Serializable {
     private Date date;
     private String nomEmprunteur;
     private Livre livre ;
-    private boolean estEmprunte;
 
     public Emprunt() {
     }
@@ -35,7 +34,7 @@ public class Emprunt implements Serializable {
         this.date = date;
         this.nomEmprunteur = nomEmprunteur;
         this.livre = livre;
-        this.estEmprunte = true;
+        livre.setEstEmprunte(true);
     }
 
     
@@ -76,14 +75,6 @@ public class Emprunt implements Serializable {
         this.livre = livre;
     }
 
-    @Column(nullable = false)
-    public boolean isEstEmprunte() {
-        return estEmprunte;
-    }
-
-    public void setEstEmprunte(boolean estEmprunte) {
-        this.estEmprunte = estEmprunte;
-    }
     
     
     
