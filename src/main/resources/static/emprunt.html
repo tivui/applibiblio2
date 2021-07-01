@@ -17,9 +17,7 @@ Page N°2 pour la création des emprunts et la modification de leur statut
 
         <!-- css pour les pages emprunt et index-->
         <link rel="stylesheet" href="/css/style.css" />
-<!--         css pour les pages bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+       
     </head>
 
 
@@ -57,27 +55,36 @@ Page N°2 pour la création des emprunts et la modification de leur statut
         <div id="message4"></div>
         <div id="message5"></div>
         <div id="message6"></div>
+        <!-- fin des tests -->
+        
+        
+        
+        
+        
 
-        <!-- fenêtre pour confirmer la mise à jour d'un emprunt -->
-        <div class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--début de la ligne qui a été modifié-elle permet d'avoir une structure de remplissagepour le tableau -->
+        <div id="textelisteEmprunt">Liste des emprunts </div> <br>
+        <table id="listemprunts" border='6'>
+            <thead>
+                <tr>
+                    <th>IdEmprunteur</th>
+                    <th>Titre du livre</th>
+                    <th>Nom de l'auteur</th>
+                    <th>Nom de l'emprunteur</th>
+                    <th>Date d'emprunt</th>
+                    <th>Rendre le livre</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+        <!--fin de la ligne qui a été modifié-ligne qui a été modifie**************************************-->
+        
+       
 
         <br>
         <a href='/'><button>Lien vers la page de création de
