@@ -103,7 +103,7 @@ public class BiblioController {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         int idLivreInt = Integer.parseInt(idLivre);//cast de l'id de String à Int
-        Livre livreEmprunt = session.load(Livre.class, idLivreInt);
+        Livre livreEmprunt = session.get(Livre.class, idLivreInt);
         //Cast de la date String récupéré en objet date
         Date dateEmprunt = new SimpleDateFormat("yyyy-MM-dd").parse(date);
         //Création d'un nouvel emprunt
@@ -126,8 +126,9 @@ public class BiblioController {
             Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
             int idLivreInt = Integer.parseInt(idEmprunt);//cast de l'id de String à Int
-            emprunt = session.load(Emprunt.class, idLivreInt);
+            emprunt = session.get(Emprunt.class, idLivreInt);
             //Mise à jour de l'emprunt
+            emprunt.setEnCours(false);
             emprunt.getLivre().setEstEmprunte(false);
             //Ajout de l'emprunt mis à jour dans la base
             session.save(emprunt);
@@ -139,12 +140,6 @@ public class BiblioController {
         return "Statut de l'emprunt n° " + idEmprunt + " mis à jour";
     }
 
-    //Contrôleur qui affiche la liste de tous les emprunts dans la base
-    @RequestMapping("/coucou/{titre}")
-    public String coucou(@PathVariable String titre) {
-        logger.info("coucou OK :" + titre);
-        return "coucou";
-    }
 
     @RequestMapping("/creation/livre/{titre}/{nomAuteur}/{prenomAuteur}/{annee}/{editeur}")
     public String creationLivre(@PathVariable String titre, @PathVariable String nomAuteur,
@@ -165,7 +160,7 @@ public class BiblioController {
     @RequestMapping("/bdd/listEmprunts")
     public List<Emprunt> listEmprunts() {
         Session session = sessionFactory.openSession();
-        String ListeDesEmprunts = "From Emprunt WHERE livre.estEmprunte=true ORDER BY date";
+        String ListeDesEmprunts = "From Emprunt WHERE enCours=true ORDER BY date";
         List<Emprunt> listEmprunt = session.createQuery(ListeDesEmprunts).getResultList();
         session.close();
         return listEmprunt;
