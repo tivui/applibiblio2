@@ -27,6 +27,7 @@ public class Emprunt implements Serializable {
     private Date date;
     private String nomEmprunteur;
     private Livre livre ;
+    private boolean enCours;
 
     public Emprunt() {
     }
@@ -36,6 +37,7 @@ public class Emprunt implements Serializable {
         this.nomEmprunteur = nomEmprunteur;
         this.livre = livre;
         livre.setEstEmprunte(true);
+        this.enCours = true;
     }
 
     
@@ -67,13 +69,21 @@ public class Emprunt implements Serializable {
         this.nomEmprunteur = nomEmprunteur;
     }
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne ()
     public Livre getLivre() {
         return livre;
     }
 
     public void setLivre(Livre livre) {
         this.livre = livre;
+    }
+
+    public boolean isEnCours() {
+        return enCours;
+    }
+
+    public void setEnCours(boolean enCours) {
+        this.enCours = enCours;
     }
 
     
