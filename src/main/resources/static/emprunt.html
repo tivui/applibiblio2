@@ -3,93 +3,70 @@
 Page N°2 pour la création des emprunts et la modification de leur statut
 -->
 <html>
-    <head>
-        <title>Page d'emprunt</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<title>Page d'emprunt</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+<script src="emprunt.js" defer></script>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<h1>Gestion des emprunts</h1>
+	<section>
+		<fieldset id="formulaireEmprunt">
+			<legend>Création d'un emprunt</legend>
+			<label for="livres">Livres<label />
+				<p>
+					<select id="listeLivres">
+						<option value="">--Veuillez sélectionner un livre--</option>
+					</select>
+				</p> <label for="nomEmprunteur">Nom de l'emprunteur</label>
+				<p>
+					<input type="text" id="nomEmprunteur" required>
+				</p> <label for="date">Date d'emprunt</label>
+				<p>
+					<input type="date" id="date" required>
+				</p>
 
-        <!--js jquery-->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <!-- js pour la page emprunt -->
-        <script src="emprunt.js" defer></script>
-        <!-- js pour Bootstrap -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+				<button id="envoyer">Créer l'emprunt</button>
+                                                 
+                          
+		</fieldset>
+            
+           <!--début de la ligne qui a été modifié-elle permet d'avoir une structure de remplissagepour le tableau -->
+            <div id="textelisteEmprunt">Liste des emprunts </div> <br>
+            <table id="listemprunts" border='6'>
+			<thead>
+				<tr>
+					<th>IdEmprunteur</th>
+                                        <th>Titre du livre</th>
+					<th>Nom de l'auteur</th>
+					<th>Nom de l'emprunteur</th>
+                                        <th>Date d'emprunt</th>
+                                        <th>Etat</th>
+				</tr>
+			</thead>
+			
+			<tbody>
 
-        <!-- css pour les pages emprunt et index-->
-        <link rel="stylesheet" href="/css/style.css" />
-       
-    </head>
+			</tbody>
 
-
-
-    <body class="container">
-        <h1>Gestion des emprunts</h1>
-        <section>
-            <form>
-                <fieldset id="formulaireEmprunt" class="border p-3">
-                    <legend  class="w-auto">Création d'un emprunt</legend>
-                    <p>
-                        <label for="listeLivres">Livres<label />
-                            <select id="listeLivres" required>
-                                <option value="">--Veuillez sélectionner un livre--</option>
-                            </select>
-                    </p> 
-                    <label for="nomEmprunteur">Nom de l'emprunteur</label>
-                    <p>
-                        <input type="text" id="nomEmprunteur" required>
-                    </p> <label for="date">Date d'emprunt</label>
-                    <p>
-                        <input type="date" id="date" required>
-                    </p>
-
-                    <button id="envoyer" type="submit">Créer l'emprunt</button>
-                </fieldset>
-            </form>
-        </section>
-
-
-        <!-- div de messages pour les test -->
+		</table>
+                 
+           <!--fin de la ligne qui a été modifié-ligne qui a été modifie**************************************-->
+            
+	</section>
+           <div id="message"></div>
+	<a href='/'><button>Lien vers la page de création de
+			livres</button></a>
         <div id="message"></div>
         <div id="message2"></div>
         <div id="message3"></div>
         <div id="message4"></div>
         <div id="message5"></div>
-        <div id="message6"></div>
-        <!-- fin des tests -->
-        
-        
-        
-        
-        
-
-        <!--début de la ligne qui a été modifié-elle permet d'avoir une structure de remplissagepour le tableau -->
-        <div id="textelisteEmprunt">Liste des emprunts </div> <br>
-        <table id="listemprunts" border='6'>
-            <thead>
-                <tr>
-                    <th>IdEmprunteur</th>
-                    <th>Titre du livre</th>
-                    <th>Nom de l'auteur</th>
-                    <th>Nom de l'emprunteur</th>
-                    <th>Date d'emprunt</th>
-                    <th>Rendre le livre</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-            </tbody>
-
-        </table>
-
-        <!--fin de la ligne qui a été modifié-ligne qui a été modifie**************************************-->
-        
-       
-
-        <br>
-        <a href='/'><button>Lien vers la page de création de
-                livres</button></a>
-
-
-    </body>
+</body>
 </html>
+   
