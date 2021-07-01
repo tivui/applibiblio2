@@ -95,7 +95,7 @@ $(function () {
 function EmpruntFini(id) {
     $.ajax({
         url: "/miseajour/emprunt/" + id,
-        type: "GET",
+        type: "PUT",
         dataType: "json"
     });
 }
