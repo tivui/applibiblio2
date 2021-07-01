@@ -11,8 +11,24 @@ jQuery(document).ready(function ($) {
         for (const livre of livresParTitre) {
             $('#listeLivres').append('<option value="' + livre.idLivre + '">' + livre.titre + ' (' + livre.prenomAuteur + ' ' + livre.nomAuteur + ')</option>');
         }
-    }).fail(function () { // 400, 501..
-        $("#message").html("Echec !");
+    });
+    $.ajax({
+        url: "bdd/listEmprunts",
+        type: "GET",
+        dataType: "json"
+    }).done(function (retour) { // 200
+        $("#message").html("Il y a dans la base " + retour.length + " emprunts");
+        let lignes = "";
+        for (const ligne of retour) {
+            lignes += "<tr>" +
+                    "<td>" + ligne.idEmprunt + "</td>" +
+                    "<td>" + ligne.livre.titre + "</td>" +
+                    "<td>" + ligne.livre.nomAuteur + "</td>" +
+                    "<td>" + ligne.nomEmprunteur + "</td>" +
+                    "<td>" + ligne.date + "</td>" +
+                    "<td><button id='" + ligne.idEmprunt + "' onclick='EmpruntFini(this.id)'>action</button></td></tr>";
+        }
+        $("#listemprunts tbody").html(lignes);
     });
 });
 
@@ -43,6 +59,17 @@ $(function () {
     });
 });
 
+
+//fonction au clic d'un bouton action
+function EmpruntFini(id) {
+    $.ajax({
+        url: "/miseajour/emprunt/" + id,
+        type: "GET",
+        dataType: "json"
+    })
+}
+
+
 //fonction Jquery qui se lance au clic du bouton envoyer
 $(function () {
     $("#envoyer").on('click', function () {
@@ -52,16 +79,15 @@ $(function () {
         let date = $("#date").val();
         //envoi de l'id pour la création d'un emprunt
         $.ajax({
-            url: "/creation/emprunt/" + id +"/" + nomEmprunteur + "/" + date,
+            url: "/creation/emprunt/" + id + "/" + nomEmprunteur + "/" + date,
             type: "GET",
             dataType: "json"
-        }).done(function (id) { // 200
-            $("#message").html("Opération de création effectuée!");
-        }).fail(function () { // 400, 501..
-            $("#message2").html("Echec !");
         });
     });
 });
+
+
+
 
 
 
