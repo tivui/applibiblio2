@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-	<h1>Page de gestion des livres</h1>
+	<h1>Page de création des livres</h1>
         <section>
             <fieldset id="formulaireLivres">
-                <legend>Nouveau livres</legend>
+                <form id="formulaireL">
                     <div>
                         <p><label>Titre de l'oeuvre</label><input type="text" id="titre" required="required" onFocus="javascript:this.value=''" /></p>
                         <p><label>Nom de l'auteur</label><input type="text" id="nomAuteur" required="required" onFocus="javascript:this.value=''" /></p>
@@ -247,17 +247,20 @@
                         <p><label>Editeur</label><input type="text" id="editeur" required="required" onFocus="javascript:this.value=''" /></p>
                     </div>
                     <div>    
-                        <p><button id="envoyer">Enregistrer</button></p>
+                        <p><button id="envoyer" type="submit">Enregistrer</button></p>
                     </div>
+                </form>
             </fieldset>
         </section>    
 	<a href='/emprunt'><button>Lien vers la page d'emprunt</button></a>
+        
+<!--         Divisions de test 
         <div id="message12"></div>
         <div id="message13"></div>
         <div id="message14"></div>
         <div id="message15"></div>
         <div id="message16"></div>
         <div id="message10"></div>
-        <div id="message11"></div>
+        <div id="message11"></div>-->
 </body>
 </html>
