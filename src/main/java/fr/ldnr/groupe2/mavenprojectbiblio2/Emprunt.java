@@ -28,6 +28,7 @@ public class Emprunt implements Serializable {
     private String nomEmprunteur;
     private Livre livre ;
     private boolean enCours;
+    private Date dateDeRetour;
 
     public Emprunt() {
     }
@@ -84,6 +85,15 @@ public class Emprunt implements Serializable {
 
     public void setEnCours(boolean enCours) {
         this.enCours = enCours;
+    }
+
+    @Temporal(javax.persistence.TemporalType.DATE)
+    public Date getDateDeRetour() {
+        return dateDeRetour;
+    }
+
+    public void setDateDeRetour(Date dateDeRetour) {
+        this.dateDeRetour = dateDeRetour;
     }
 
     
