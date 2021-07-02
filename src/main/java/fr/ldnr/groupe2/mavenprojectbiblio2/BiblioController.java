@@ -119,16 +119,19 @@ public class BiblioController {
     }
 
     //Contrôleur qui met à jour le statut d'un emprunt à partir de son id
-    @RequestMapping("/miseajour/emprunt/{idEmprunt}")
-    public String miseAjour(@PathVariable String idEmprunt) throws ParseException {
+    @RequestMapping("/miseajour/emprunt/{idEmprunt}/{today}")
+    public String miseAjour(@PathVariable String idEmprunt, @PathVariable String today) throws ParseException {
         Emprunt emprunt;
         try ( //Récupération de l'emprunt
             Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
             int idLivreInt = Integer.parseInt(idEmprunt);//cast de l'id de String à Int
+            //Cast de la date String récupéré en objet date
+            Date dateDuJour = new SimpleDateFormat("yyyy-MM-dd").parse(today);
             emprunt = session.get(Emprunt.class, idLivreInt);
             //Mise à jour de l'emprunt
             emprunt.setEnCours(false);
+            emprunt.setDateDeRetour(dateDuJour);
             emprunt.getLivre().setEstEmprunte(false);
             //Ajout de l'emprunt mis à jour dans la base
             session.save(emprunt);
