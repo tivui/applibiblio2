@@ -66,7 +66,7 @@ public class BiblioController {
         return list;
     }
     
-    //Affiche tous les livres empruntés ordonnés par date
+    //Affiche tous les emprunts ordonnés par date
     @RequestMapping("/bdd/listEmprunts")
     public List<Emprunt> listEmprunts() {
         List<Emprunt> listEmprunt;
