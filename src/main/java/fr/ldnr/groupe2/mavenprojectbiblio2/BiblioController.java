@@ -44,7 +44,7 @@ public class BiblioController {
     }
 
 
-
+//*************************Liste des request mapping, à chaque url, une fonction*******************************
     //Affiche tous les livres de la bdd 
     @RequestMapping("/bdd/livres")
     public List<Livre> livres() {
@@ -55,7 +55,6 @@ public class BiblioController {
         }
         return list;
     }
-
     //Affiche tous les livres disponibles triés par titre
     @RequestMapping("/bdd/livrespartitre")
     public List<Livre> livresParTitre() {
@@ -66,7 +65,6 @@ public class BiblioController {
         }
         return list;
     }
-
     //Affiche tous les emprunts
     @RequestMapping("/bdd/emprunts")
     public List<Emprunt> emprunts() {
@@ -77,7 +75,6 @@ public class BiblioController {
         }
         return list;
     }
-
     //Affiche tous les livres empruntés ordonnés par date
     @RequestMapping("/bdd/listEmprunts")
     public List<Emprunt> listEmprunts() {
@@ -89,6 +86,7 @@ public class BiblioController {
         return listEmprunt;
     }
 
+    
     //crée un livre à partir des paramètres titre, nomAuteur, prenomAuteur, annee, editeur
     @RequestMapping("/creation/livre/{titre}/{nomAuteur}/{prenomAuteur}/{annee}/{editeur}")
     public String creationLivre(@PathVariable String titre, @PathVariable String nomAuteur,
@@ -104,8 +102,7 @@ public class BiblioController {
         logger.info("Nouveau livre ajouté à la base");
         return "ok";
     }
-
-    //Crée un emprunt à partir de l'id et de la date du jour
+    //crée un emprunt à partir de l'id et de la date du jour
     @RequestMapping("/creation/emprunt/{idLivre}/{nomEmprunteur}/{date}")
     public String creationEmprunt(@PathVariable String idLivre, @PathVariable String nomEmprunteur, @PathVariable String date) throws ParseException {
         //Récupération de l'objet livre dans la table Livre grâce à son id (qu'il faut caster en int)
@@ -126,8 +123,7 @@ public class BiblioController {
         logger.info("Nouvel Emprunt ajouté à la base, statut du livre associé :" + nouvelEmprunt.getLivre().isEstEmprunte());
         return idLivre;
     }
-
-    //Met à jour le statut d'un emprunt à partir de son id
+    //met à jour le statut d'un emprunt à partir de son id
     @RequestMapping("/miseajour/emprunt/{idEmprunt}/{today}")
     public String miseAjour(@PathVariable String idEmprunt, @PathVariable String today) throws ParseException {
         Emprunt emprunt;
@@ -152,8 +148,8 @@ public class BiblioController {
         return "Statut de l'emprunt n° " + idEmprunt + " mis à jour";
     }
     
-    
-    //*************************Liste des request mapping, à chaque url, une fonction*******************************
+
+    //****TESTS****
     //Test pour générer des créations de livres et d'emprunts 
     @RequestMapping("/creation")
     @ResponseBody
