@@ -21,17 +21,7 @@ jQuery(document).ready(function ($) {
 
 //**************Attribut date max à la date du jour**************************************************
     jQuery(document).ready(function ($) {
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1; //Janvier est normalisé à 0
-        var yyyy = today.getFullYear();
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-        if (mm < 10) {
-            mm = '0' + mm
-        }
-        today = yyyy + '-' + mm + '-' + dd;
+        today = dateDuJour(); //voir en fin de page pour la fonction dateDuJour()
         document.getElementById("date").setAttribute("max", today);
     });
 
@@ -57,12 +47,12 @@ jQuery(document).ready(function ($) {
                         "<td>" + ligne.livre.nomAuteur + "</td>" +
                         "<td>" + ligne.nomEmprunteur + "</td>" +
                         "<td>" + ligne.date + "</td>" +
-                        "<td><button id='" + ligne.idEmprunt + "' onclick='EmpruntFini(this.id)'>action</button></td></tr>";
+                        "<td><button id='" + ligne.idEmprunt + "' onclick='EmpruntFini(this.id)'>effectuer le retour</button></td></tr>";
             }
             $("#listemprunts tbody").html(lignes);
         });
     });
-    //--------------------fin de la fonction qui a été rajoué---------------------------------
+    //--------------------fin de la fonction qui a été rajoutée---------------------------------
 });
 
 
@@ -140,14 +130,15 @@ $(document).ready(function () {
 
 //fonction au clic d'un bouton action
 function EmpruntFini(id) {
+    let today = dateDuJour()
     $.ajax({
-        url: "/miseajour/emprunt/" + id,
+        url: "/miseajour/emprunt/" + id + "/" + today,
         type: "PUT",
         dataType: "json"
     });
     $(function (e) {
         //ouverture d'une boite de dialogue avec confirmation
-        if (confirm("Confirmez vous la fin de l'emprunt à la date du jour?")) {
+        if (confirm("Confirmez-vous la fin de l'emprunt à la date du jour?")) {
             $.ajax({
                 url: "bdd/listEmprunts",
                 type: "GET",
@@ -192,6 +183,21 @@ function EmpruntFini(id) {
 }
 
 
+//***********************Génération de la date du jour*******************
+function dateDuJour() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //Janvier est normalisé à 0
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+    return today;
+}
 
 
 
