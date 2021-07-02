@@ -43,7 +43,6 @@ public class BiblioController {
         }
     }
 
-
 //*************************Liste des request mapping, à chaque url, une fonction*******************************
     //Affiche tous les livres de la bdd 
     @RequestMapping("/bdd/livres")
@@ -55,6 +54,7 @@ public class BiblioController {
         }
         return list;
     }
+
     //Affiche tous les livres disponibles triés par titre
     @RequestMapping("/bdd/livrespartitre")
     public List<Livre> livresParTitre() {
@@ -65,16 +65,7 @@ public class BiblioController {
         }
         return list;
     }
-    //Affiche tous les emprunts
-    @RequestMapping("/bdd/emprunts")
-    public List<Emprunt> emprunts() {
-        List<Emprunt> list;
-        try (Session session = sessionFactory.openSession()) {
-            String empruntsHQL = "FROM Emprunt";
-            list = session.createQuery(empruntsHQL).list();
-        }
-        return list;
-    }
+    
     //Affiche tous les livres empruntés ordonnés par date
     @RequestMapping("/bdd/listEmprunts")
     public List<Emprunt> listEmprunts() {
@@ -86,7 +77,17 @@ public class BiblioController {
         return listEmprunt;
     }
 
-    
+    //Affiche tous les emprunts
+    @RequestMapping("/bdd/emprunts")
+    public List<Emprunt> emprunts() {
+        List<Emprunt> list;
+        try (Session session = sessionFactory.openSession()) {
+            String empruntsHQL = "FROM Emprunt";
+            list = session.createQuery(empruntsHQL).list();
+        }
+        return list;
+    }
+
     //crée un livre à partir des paramètres titre, nomAuteur, prenomAuteur, annee, editeur
     @RequestMapping("/creation/livre/{titre}/{nomAuteur}/{prenomAuteur}/{annee}/{editeur}")
     public String creationLivre(@PathVariable String titre, @PathVariable String nomAuteur,
@@ -102,6 +103,7 @@ public class BiblioController {
         logger.info("Nouveau livre ajouté à la base");
         return "ok";
     }
+
     //crée un emprunt à partir de l'id et de la date du jour
     @RequestMapping("/creation/emprunt/{idLivre}/{nomEmprunteur}/{date}")
     public String creationEmprunt(@PathVariable String idLivre, @PathVariable String nomEmprunteur, @PathVariable String date) throws ParseException {
@@ -123,6 +125,7 @@ public class BiblioController {
         logger.info("Nouvel Emprunt ajouté à la base, statut du livre associé :" + nouvelEmprunt.getLivre().isEstEmprunte());
         return idLivre;
     }
+
     //met à jour le statut d'un emprunt à partir de son id
     @RequestMapping("/miseajour/emprunt/{idEmprunt}/{today}")
     public String miseAjour(@PathVariable String idEmprunt, @PathVariable String today) throws ParseException {
@@ -147,7 +150,6 @@ public class BiblioController {
         logger.info("Valeur du booléen livre estEmprunte :" + emprunt.getLivre().isEstEmprunte());
         return "Statut de l'emprunt n° " + idEmprunt + " mis à jour";
     }
-    
 
     //****TESTS****
     //Test pour générer des créations de livres et d'emprunts 
