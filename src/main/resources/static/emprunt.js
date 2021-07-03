@@ -37,7 +37,7 @@ jQuery(document).ready(function ($) {
             if (retour.length === 0) {
                 $("#message").html("Pas d'emprunts en cours pour le moment...");
             } else {
-                $("#message").html("Nombre d'emprunts en cours :" + retour.length);
+                $("#message").html("Nombre d'emprunts en cours : " + retour.length);
             }
             let lignes = "";
             for (const ligne of retour) {
@@ -81,8 +81,12 @@ $(document).ready(function () {
             url: "bdd/listEmprunts",
             type: "GET",
             dataType: "json"
-        }).done(function (retour) { // 200
-            $("#message").html("Nombre d'emprunts dans la base :" + retour.length);
+        }).done(function (retour) { //     return today;    return today;200
+            if (retour.length === 0) {
+                $("#message").html("Pas d'emprunts en cours pour le moment...");
+            } else {
+                $("#message").html("Nombre d'emprunts en cours : " + retour.length);
+            }
             let lignes = "";
             for (const ligne of retour) {
                 lignes += "<tr>" +
@@ -128,7 +132,7 @@ $(document).ready(function () {
 
 
 
-//fonction au clic d'un bouton action
+//fonction au clic d'un bouton effectuer le retour
 function EmpruntFini(id) {
     let today = dateDuJour()
     $.ajax({

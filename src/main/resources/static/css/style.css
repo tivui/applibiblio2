@@ -1,5 +1,130 @@
 h1 {
-    color:blue;
     font-size: 5em !important;
+}
+
+h2 {
+    margin-top:30px !important;
+}
+
+h1, h2, .lead {
+    text-align: center !important;
+}
+
+.lead {
+    padding-bottom: 10px;
+}
+
+body {
+    background-color: rgb(209, 209, 209) !important;
+}
+
+.date {
+    border-radius: 5px !important;
+    border-color: rgb(218, 221, 227);
+    height:37.5px;
+    border-width: 0.2px;
+    width: 150px;
+}
+
+.table {
+    background-color: white;
+    width: 98% !important;
+}
+
+.formulaire {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(247, 247, 247);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.formulaire1 {
+    width: 55%;
+    margin-top: 3%;
+    padding: 20px;
+}
+
+.tableauEmprunts {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(247, 247, 247);
+    border-radius: 10px;
+    width: 80%;
+    padding:10px;
+    margin-top: 20px;
+}
+
+.formulaire2 {
+    width: 80%;
+    padding: 20px;
+}
+
+.row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin-top: 10px !important;
+}
+
+.row1 > .col-md-4, .row1 > .col-md-5 {
+    margin-right: 80px;
+}
+
+.row2 {
+    padding-left: 10%;
+}
+
+#titreCreationEmprunt, #validationEmprunt {
+    margin-left: -5%;
+}
+
+#titreCreationEmprunt {
+    margin-top: -10px !important;
+}
+
+#textelisteEmprunt {
+    margin-top: 5px !important;
+}
+
+#validationEmprunt {
+    margin-top: 5px !important;
+}
+
+#envoyer {
+    width: 180px;
+}
+
+#validation, #lienEmprunt, #validationEmprunt, #lienCreationLivres {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#lienEmprunt {
+    margin-top: 60px;
+}
+
+#nomEmprunteur {
+    width: 250px !important;
+}
+
+#listeLivres {
+    width: 300px;
+}
+
+
+
+
+#listemprunts {
+    width:85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.jumbotron {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(190,190,190,1) 100%); 
+    margin-top: 2%;
 }
 
