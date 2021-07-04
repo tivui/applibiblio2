@@ -148,7 +148,7 @@ function EmpruntFini(id) {
                 type: "GET",
                 dataType: "json"
             }).done(function (retour) { // 200
-                $("#message").html("Nombre d'emprunts dans la base :" + retour.length);
+                $("#message").html("Nombre d'emprunts en cours :" + retour.length);
                 let lignes = "";
                 for (const ligne of retour) {
                     lignes += "<tr>" +
